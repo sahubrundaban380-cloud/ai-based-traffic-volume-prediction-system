@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TrafficAI | Traffic Prediction</title>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
+<body class="prediction-page">
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="index.html">
+            <i class="bi bi-traffic-cone"></i>
+            Traffic<span>AI</span>
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="prediction.html">
+                        Prediction
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard.html">
+                        Dashboard
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= PREDICTION SECTION ================= -->
+
+<section class="prediction-section">
+
+    <div class="container">
+
+        <div class="page-title text-center">
+
+            <div class="hero-badge">
+                <i class="bi bi-cpu"></i>
+                AI Traffic Prediction
+            </div>
+
+            <h1>
+                Predict Traffic
+                <span>Volume</span>
+            </h1>
+
+            <p>
+                Enter the required traffic and environmental information
+                to generate an AI-based prediction.
+            </p>
+
+        </div>
+
+
+        <div class="row justify-content-center mt-5">
+
+            <div class="col-lg-9">
+
+                <div class="prediction-card">
+
+                    <div class="card-heading">
+
+                        <div class="prediction-icon">
+                            <i class="bi bi-bar-chart-line"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>Traffic Information</h3>
+
+                            <p>
+                                Enter the details below
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <form id="predictionForm">
+
+                        <div class="row g-4">
+
+
+                            <!-- Date -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    <i class="bi bi-calendar3"></i>
+                                    Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    class="form-control"
+                                    id="date"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Time -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    <i class="bi bi-clock"></i>
+                                    Time
+                                </label>
+
+                                <input
+                                    type="time"
+                                    class="form-control"
+                                    id="time"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Location -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    <i class="bi bi-geo-alt"></i>
+                                    Location
+                                </label>
+
+                                <select class="form-select"
+                                        id="location"
+                                        required>
+
+                                    <option value="">
+                                        Select Location
+                                    </option>
+
+                                    <option value="Main Road">
+                                        Main Road
+                                    </option>
+
+                                    <option value="Highway">
+                                        Highway
+                                    </option>
+
+                                    <option value="City Center">
+                                        City Center
+                                    </option>
+
+                                    <option value="Market Area">
+                                        Market Area
+                                    </option>
+
+                                    <option value="School Zone">
+                                        School Zone
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Weather -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    <i class="bi bi-cloud-sun"></i>
+                                    Weather
+                                </label>
+
+                                <select class="form-select"
+                                        id="weather"
+                                        required>
+
+                                    <option value="">
+                                        Select Weather
+                                    </option>
+
+                                    <option value="Clear">
+                                        Clear
+                                    </option>
+
+                                    <option value="Cloudy">
+                                        Cloudy
+                                    </option>
+
+                                    <option value="Rain">
+                                        Rain
+                                    </option>
+
+                                    <option value="Fog">
+                                        Fog
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Temperature -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    <i class="bi bi-thermometer-half"></i>
+                                    Temperature (°C)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="temperature"
+                                    placeholder="Example: 28"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Holiday -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    <i class="bi bi-calendar-event"></i>
+                                    Holiday
+                                </label>
+
+                                <select class="form-select"
+                                        id="holiday"
+                                        required>
+
+                                    <option value="">
+                                        Select Option
+                                    </option>
+
+                                    <option value="No">
+                                        No
+                                    </option>
+
+                                    <option value="Yes">
+                                        Yes
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Previous Traffic -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    <i class="bi bi-car-front"></i>
+                                    Previous Traffic Volume
+                                </label>
+
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="previousTraffic"
+                                    placeholder="Example: 1200"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Road Condition -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    <i class="bi bi-signpost-2"></i>
+                                    Road Condition
+                                </label>
+
+                                <select class="form-select"
+                                        id="roadCondition"
+                                        required>
+
+                                    <option value="">
+                                        Select Condition
+                                    </option>
+
+                                    <option value="Good">
+                                        Good
+                                    </option>
+
+                                    <option value="Normal">
+                                        Normal
+                                    </option>
+
+                                    <option value="Poor">
+                                        Poor
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- BUTTON -->
+
+                            <div class="col-12 mt-4">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary prediction-btn">
+
+                                    <i class="bi bi-cpu"></i>
+
+                                    Predict Traffic Volume
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+
+                    <!-- RESULT -->
+
+                    <div id="predictionResult"
+                         class="prediction-result mt-4 d-none">
+
+                        <div class="result-icon">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+
+                        <div>
+
+                            <small>
+                                PREDICTED TRAFFIC VOLUME
+                            </small>
+
+                            <h2 id="resultValue">
+                                0 Vehicles / Hour
+                            </h2>
+
+                            <span id="trafficStatus">
+                                Traffic Status
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="container text-center">
+
+        <p>
+            © 2026 TrafficAI — AI-Based Traffic Prediction System
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="js/prediction.js"></script>
+
+</body>
+
+</html>

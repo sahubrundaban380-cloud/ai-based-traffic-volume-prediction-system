@@ -1,0 +1,1393 @@
+/* =========================================================
+   TRAFFIC AI - MAIN STYLE SHEET
+   AI Based Real-Time Traffic Volume Prediction System
+   ========================================================= */
+
+
+/* ================= ROOT ================= */
+
+:root {
+    --bg-dark: #07111f;
+    --bg-dark-2: #0b1728;
+    --card-bg: #101f33;
+    --card-bg-light: #14263d;
+
+    --primary: #00b4d8;
+    --primary-dark: #0077b6;
+    --secondary: #48cae4;
+
+    --text-white: #ffffff;
+    --text-light: #c8d4e3;
+    --text-muted: #8798ad;
+
+    --border: rgba(255, 255, 255, 0.09);
+
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ================= GENERAL ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-white);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    padding: 16px 0;
+    background: rgba(7, 17, 31, 0.92);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar-brand {
+    font-size: 25px;
+    letter-spacing: 0.5px;
+    color: white !important;
+}
+
+.navbar-brand i {
+    color: var(--primary);
+    margin-right: 6px;
+}
+
+.navbar-brand span {
+    color: var(--primary);
+}
+
+.navbar-nav .nav-link {
+    color: #b8c7d9 !important;
+    margin-left: 18px;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--primary) !important;
+}
+
+.navbar-toggler {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.btn-primary {
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-dark)
+    );
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 11px 22px;
+    transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 180, 216, 0.25);
+    background: linear-gradient(
+        135deg,
+        var(--secondary),
+        var(--primary-dark)
+    );
+}
+
+
+/* ================= HERO ================= */
+
+.hero-section {
+    min-height: 100vh;
+    padding-top: 80px;
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at 85% 30%,
+            rgba(0, 180, 216, 0.13),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 10% 80%,
+            rgba(0, 119, 182, 0.12),
+            transparent 30%
+        ),
+        var(--bg-dark);
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 50px 50px;
+
+    pointer-events: none;
+}
+
+
+/* ================= HERO CONTENT ================= */
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 15px;
+
+    border-radius: 50px;
+
+    background: rgba(0, 180, 216, 0.09);
+
+    border: 1px solid rgba(0, 180, 216, 0.25);
+
+    color: var(--secondary);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    margin-bottom: 15px;
+}
+
+.hero-title {
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+    max-width: 650px;
+}
+
+.hero-title span,
+.page-title h1 span,
+.dashboard-header h1 span {
+    color: var(--primary);
+}
+
+.hero-text {
+    font-size: 17px;
+    max-width: 600px;
+    margin: 25px 0;
+}
+
+.hero-buttons {
+    margin-top: 25px;
+}
+
+.hero-stats {
+    max-width: 450px;
+}
+
+.hero-stats h3 {
+    font-size: 25px;
+    margin-bottom: 3px;
+    color: white;
+}
+
+.hero-stats p {
+    font-size: 12px;
+    margin: 0;
+}
+
+
+/* ================= TRAFFIC CARD ================= */
+
+.traffic-card {
+    background: rgba(16, 31, 51, 0.88);
+
+    border: 1px solid var(--border);
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    box-shadow: var(--shadow);
+
+    backdrop-filter: blur(15px);
+
+    animation: floatingCard 5s ease-in-out infinite;
+}
+
+@keyframes floatingCard {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.traffic-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.traffic-card-header small {
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+}
+
+.traffic-card-header h4 {
+    margin-top: 5px;
+}
+
+.live-dot {
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    background: rgba(34, 197, 94, 0.1);
+    color: var(--success);
+
+    font-size: 11px;
+    font-weight: bold;
+}
+
+
+/* ================= TRAFFIC VISUAL ================= */
+
+.traffic-visual {
+    height: 220px;
+
+    margin: 25px 0;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0b1828 0%,
+            #13253b 50%,
+            #0b1828 100%
+        );
+}
+
+.traffic-visual::before,
+.traffic-visual::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    height: 5px;
+
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,0.7) 0 35px,
+        transparent 35px 70px
+    );
+}
+
+.traffic-visual::before {
+    top: 35px;
+}
+
+.traffic-visual::after {
+    bottom: 35px;
+}
+
+.road-line {
+    position: absolute;
+
+    top: 50%;
+    left: 0;
+    right: 0;
+
+    border-top: 2px dashed rgba(255,255,255,0.25);
+}
+
+.traffic-car {
+    position: absolute;
+
+    font-size: 35px;
+
+    color: var(--primary);
+
+    filter: drop-shadow(
+        0 0 10px rgba(0,180,216,0.35)
+    );
+}
+
+.car-one {
+    top: 70px;
+    left: 15%;
+}
+
+.car-two {
+    top: 125px;
+    left: 50%;
+    color: var(--secondary);
+}
+
+.car-three {
+    top: 70px;
+    right: 15%;
+    color: #ffffff;
+}
+
+
+/* ================= TRAFFIC INFO ================= */
+
+.traffic-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.traffic-info-box {
+    display: flex;
+    gap: 12px;
+
+    padding: 15px;
+
+    background: rgba(255,255,255,0.035);
+
+    border-radius: 13px;
+
+    border: 1px solid var(--border);
+}
+
+.traffic-info-box > i {
+    color: var(--primary);
+    font-size: 24px;
+}
+
+.traffic-info-box small {
+    color: var(--text-muted);
+}
+
+.traffic-info-box h4 {
+    margin: 2px 0;
+}
+
+.traffic-info-box span {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+
+/* ================= FEATURES ================= */
+
+.features-section,
+.how-section {
+    padding: 100px 0;
+
+    background: var(--bg-dark-2);
+}
+
+.section-heading span {
+    color: var(--primary);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    margin-top: 12px;
+
+    font-size: 42px;
+    font-weight: 800;
+}
+
+.section-heading strong {
+    color: var(--primary);
+}
+
+.section-heading p {
+    max-width: 600px;
+    margin: 15px auto;
+}
+
+
+.feature-card {
+    height: 100%;
+
+    padding: 30px;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 17px;
+
+    transition: 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+
+    border-color: rgba(0,180,216,0.4);
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.feature-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(0,180,216,0.1);
+
+    color: var(--primary);
+
+    font-size: 25px;
+
+    margin-bottom: 20px;
+}
+
+.feature-card h4 {
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 14px;
+    margin: 0;
+}
+
+
+/* ================= HOW IT WORKS ================= */
+
+.step-number {
+    width: 75px;
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background: rgba(0,180,216,0.1);
+
+    border: 1px solid rgba(0,180,216,0.3);
+
+    color: var(--primary);
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.how-section h4 {
+    margin-bottom: 10px;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer {
+    padding: 35px 0;
+
+    background: #050d18;
+
+    border-top: 1px solid var(--border);
+}
+
+.footer h4 {
+    font-weight: 700;
+}
+
+.footer h4 i {
+    color: var(--primary);
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+.copyright {
+    color: #66788e !important;
+}
+
+
+/* =========================================================
+   PREDICTION PAGE
+   ========================================================= */
+
+.prediction-page {
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(0,180,216,0.08),
+            transparent 30%
+        ),
+        var(--bg-dark);
+}
+
+.prediction-section {
+    min-height: 100vh;
+
+    padding: 150px 0 80px;
+}
+
+.page-title h1 {
+    font-size: 48px;
+    font-weight: 800;
+
+    margin-top: 10px;
+}
+
+.page-title p {
+    max-width: 650px;
+    margin: 15px auto;
+}
+
+
+/* ================= PREDICTION CARD ================= */
+
+.prediction-card {
+    padding: 35px;
+
+    background: rgba(16,31,51,0.9);
+
+    border: 1px solid var(--border);
+
+    border-radius: 22px;
+
+    box-shadow: var(--shadow);
+}
+
+.card-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 30px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.prediction-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(0,180,216,0.1);
+
+    color: var(--primary);
+
+    font-size: 25px;
+}
+
+.card-heading h3 {
+    margin: 0;
+}
+
+.card-heading p {
+    margin: 3px 0 0;
+    font-size: 13px;
+}
+
+
+/* ================= FORM ================= */
+
+.form-label {
+    color: #dce7f3;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+.form-label i {
+    color: var(--primary);
+    margin-right: 5px;
+}
+
+.form-control,
+.form-select {
+    min-height: 48px;
+
+    background: #0b192b !important;
+
+    border: 1px solid var(--border) !important;
+
+    color: white !important;
+
+    border-radius: 10px;
+
+    padding: 10px 14px;
+}
+
+.form-control::placeholder {
+    color: #63758a;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(0,180,216,0.1) !important;
+}
+
+.form-select option {
+    background: #0b192b;
+    color: white;
+}
+
+
+/* ================= DATE/TIME ICON FIX ================= */
+
+input[type="date"],
+input[type="time"] {
+    color-scheme: dark;
+}
+
+
+/* ================= PREDICTION BUTTON ================= */
+
+.prediction-btn {
+    width: 100%;
+
+    min-height: 52px;
+
+    font-size: 16px;
+}
+
+
+/* ================= RESULT ================= */
+
+.prediction-result {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 22px;
+
+    border-radius: 15px;
+
+    background: rgba(34,197,94,0.07);
+
+    border: 1px solid rgba(34,197,94,0.2);
+}
+
+.result-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(34,197,94,0.1);
+
+    color: var(--success);
+
+    font-size: 25px;
+}
+
+.prediction-result small {
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+.prediction-result h2 {
+    margin: 5px 0;
+
+    font-size: 28px;
+}
+
+.prediction-result span {
+    color: var(--success);
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.dashboard-page {
+    background: #07111f;
+}
+
+.dashboard-section {
+    min-height: 100vh;
+
+    padding: 140px 0 80px;
+}
+
+.dashboard-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.dashboard-header h1 {
+    font-size: 45px;
+
+    font-weight: 800;
+
+    margin-top: 10px;
+}
+
+.dashboard-header p {
+    margin: 5px 0;
+}
+
+.live-status {
+    padding: 10px 16px;
+
+    border-radius: 30px;
+
+    background: rgba(34,197,94,0.08);
+
+    color: var(--success);
+
+    border: 1px solid rgba(34,197,94,0.2);
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.live-circle {
+    display: inline-block;
+
+    width: 8px;
+    height: 8px;
+
+    margin-right: 7px;
+
+    border-radius: 50%;
+
+    background: var(--success);
+
+    box-shadow: 0 0 10px var(--success);
+}
+
+
+/* ================= DASHBOARD CARDS ================= */
+
+.dashboard-card {
+    height: 100%;
+
+    padding: 25px;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 17px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+
+/* ================= STAT CARD ================= */
+
+.stat-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 17px;
+
+    transition: 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(0,180,216,0.3);
+}
+
+.stat-icon {
+    min-width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(0,180,216,0.1);
+
+    color: var(--primary);
+
+    font-size: 24px;
+}
+
+.stat-card small {
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+.stat-card h2 {
+    font-size: 27px;
+
+    margin: 3px 0;
+}
+
+.stat-card span {
+    color: var(--text-muted);
+
+    font-size: 11px;
+}
+
+
+/* ================= CHART ================= */
+
+.chart-card {
+    min-height: 420px;
+}
+
+.chart-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.chart-header small {
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+}
+
+.chart-header h3 {
+    margin: 4px 0 0;
+
+    font-size: 21px;
+}
+
+.chart-select {
+    width: 130px;
+
+    min-height: 38px;
+
+    font-size: 12px;
+}
+
+.chart-container {
+    height: 310px;
+
+    position: relative;
+}
+
+
+/* ================= PREDICTION SUMMARY ================= */
+
+.summary-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.summary-header small {
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+}
+
+.summary-header h3 {
+    margin-top: 5px;
+}
+
+.summary-header > i {
+    font-size: 28px;
+
+    color: var(--primary);
+}
+
+.prediction-number {
+    margin: 35px 0;
+}
+
+.prediction-number h1 {
+    font-size: 48px;
+
+    font-weight: 800;
+
+    margin-bottom: 5px;
+}
+
+.prediction-number span {
+    color: var(--text-muted);
+
+    font-size: 13px;
+}
+
+.prediction-status {
+    display: flex;
+
+    gap: 12px;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background: rgba(245,158,11,0.08);
+
+    border: 1px solid rgba(245,158,11,0.15);
+}
+
+.prediction-status > i {
+    color: var(--warning);
+
+    font-size: 22px;
+}
+
+.prediction-status strong {
+    font-size: 13px;
+}
+
+.prediction-status p {
+    margin: 2px 0 0;
+
+    font-size: 11px;
+}
+
+
+/* ================= TRAFFIC TABLE ================= */
+
+.traffic-table {
+    color: #dce7f3;
+
+    margin-top: 15px;
+
+    vertical-align: middle;
+}
+
+.traffic-table thead th {
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    border-bottom: 1px solid var(--border);
+
+    padding: 13px;
+}
+
+.traffic-table tbody td {
+    border-bottom: 1px solid var(--border);
+
+    padding: 16px 13px;
+
+    font-size: 13px;
+}
+
+.traffic-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.traffic-table td i {
+    color: var(--primary);
+
+    margin-right: 5px;
+}
+
+.status {
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+.status.low {
+    color: var(--success);
+
+    background: rgba(34,197,94,0.1);
+}
+
+.status.moderate {
+    color: var(--warning);
+
+    background: rgba(245,158,11,0.1);
+}
+
+.status.high {
+    color: var(--danger);
+
+    background: rgba(239,68,68,0.1);
+}
+
+
+/* ================= SYSTEM CARD ================= */
+
+.system-card {
+    min-height: 100%;
+}
+
+.system-card .chart-header > i {
+    font-size: 28px;
+
+    color: var(--primary);
+}
+
+.system-item {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 17px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.system-item:last-child {
+    border-bottom: none;
+}
+
+.system-item span {
+    display: block;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+}
+
+.system-item strong {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 13px;
+}
+
+.system-item > i {
+    color: var(--primary);
+
+    font-size: 18px;
+}
+
+.system-online {
+    color: var(--success) !important;
+
+    font-size: 20px !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .navbar-nav {
+        padding-top: 15px;
+    }
+
+    .navbar-nav .nav-link {
+        margin-left: 0;
+        padding: 10px 0;
+    }
+
+    .hero-section {
+        padding-top: 120px;
+    }
+
+    .hero-title {
+        font-size: 48px;
+    }
+
+    .traffic-card {
+        margin-top: 20px;
+    }
+
+    .dashboard-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .hero-title {
+        font-size: 40px;
+
+        letter-spacing: -1px;
+    }
+
+    .hero-text {
+        font-size: 15px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+
+        margin: 5px 0 !important;
+    }
+
+    .hero-stats {
+        text-align: center;
+    }
+
+    .traffic-info {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading h2 {
+        font-size: 32px;
+    }
+
+    .page-title h1 {
+        font-size: 38px;
+    }
+
+    .prediction-card {
+        padding: 22px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 37px;
+    }
+
+    .dashboard-section {
+        padding-top: 120px;
+    }
+
+    .chart-header {
+        align-items: flex-start;
+
+        gap: 15px;
+
+        flex-direction: column;
+    }
+
+    .chart-select {
+        width: 100%;
+    }
+
+    .prediction-number h1 {
+        font-size: 38px;
+    }
+
+    .traffic-table {
+        min-width: 600px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .hero-title {
+        font-size: 35px;
+    }
+
+    .hero-badge {
+        font-size: 11px;
+    }
+
+    .traffic-card {
+        padding: 18px;
+    }
+
+    .traffic-visual {
+        height: 180px;
+    }
+
+    .prediction-card {
+        padding: 18px;
+    }
+
+    .card-heading h3 {
+        font-size: 18px;
+    }
+
+    .dashboard-card {
+        padding: 18px;
+    }
+
+}
+
+
+/* ================= ANIMATIONS ================= */
+
+.fade-up {
+    animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ================= SCROLLBAR ================= */
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050d18;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #17415b;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+
+/* ================= SELECTION ================= */
+
+::selection {
+    background: var(--primary);
+    color: white;
+}
+/* ================= DYNAMIC PREDICTION STATUS ================= */
+
+.traffic-result-status {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.traffic-result-status.low {
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.traffic-result-status.moderate {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.traffic-result-status.high {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.traffic-result-status.very-high {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.15);
+}
+
+.custom-alert {
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+}
